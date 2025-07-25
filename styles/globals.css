@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCaret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  color:#fff;
+  font-size: 20px;
+  border-right: 2px solid #fff;
+  width: 0;z-index: 10;margin: 5px 12px;
+  animation:
+    typewriter 4s steps(80, end) 0.5s forwards,
+    blinkCaret 0.75s step-end infinite;
+}
