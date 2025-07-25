@@ -5,9 +5,14 @@ import { Fireworks } from 'fireworks-js';
 import Image from 'next/image';
 import styles from '../styles/CustomStyles.module.css';
 
-
+type TimeLeft = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
 // Dummy timeLeft (replace with countdown logic)
-const Timer = ({ timeLeft }) => {
+const Timer = ({ timeLeft }: { timeLeft: TimeLeft }) => {
   const [animState, setAnimState] = useState({
     days: false,
     hours: false,
@@ -151,33 +156,7 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (
-      currentSlide === slides.length - 1 &&
-      containerRef.current &&
-      !fireworksRef.current
-    ) {
-      fireworksRef.current = new Fireworks(containerRef.current, {
-        rocketsPoint: { min: 0, max: 100 },
-        hue: { min: 0, max: 360 },
-        delay: { min: 15, max: 30 },
-        speed: 2,
-        acceleration: 1.05,
-        friction: 0.95,
-        gravity: 1.5,
-        particles: 70,
-        trace: 3,
-        explosion: 5,
-        autoresize: true,
-        brightness: { min: 50, max: 80 },
-      });
-      fireworksRef.current.start();
-
-      setTimeout(() => {
-        fireworksRef.current?.stop();
-      }, 5000);
-    }
-  }, [currentSlide]);
+  
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
